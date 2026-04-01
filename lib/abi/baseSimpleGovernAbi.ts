@@ -1,0 +1,128 @@
+export const baseSimpleGovernAbi = [
+  {
+    type: "constructor",
+    inputs: [{ name: "_token", type: "address", internalType: "address" }],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "conclude",
+    inputs: [
+      { name: "id", type: "uint256", internalType: "uint256" },
+      { name: "totalSupplyEstimate", type: "uint256", internalType: "uint256" },
+    ],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "governanceToken",
+    inputs: [],
+    outputs: [{ name: "", type: "address", internalType: "contract IERC20Basic" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "hasVoted",
+    inputs: [
+      { name: "", type: "uint256", internalType: "uint256" },
+      { name: "", type: "address", internalType: "address" },
+    ],
+    outputs: [{ name: "", type: "bool", internalType: "bool" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "proposalCount",
+    inputs: [],
+    outputs: [{ name: "", type: "uint256", internalType: "uint256" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "proposals",
+    inputs: [{ name: "", type: "uint256", internalType: "uint256" }],
+    outputs: [
+      { name: "proposer", type: "address", internalType: "address" },
+      { name: "description", type: "string", internalType: "string" },
+      { name: "start", type: "uint256", internalType: "uint256" },
+      { name: "end", type: "uint256", internalType: "uint256" },
+      { name: "forVotes", type: "uint256", internalType: "uint256" },
+      { name: "againstVotes", type: "uint256", internalType: "uint256" },
+      { name: "executed", type: "bool", internalType: "bool" },
+      { name: "stakeETH", type: "uint256", internalType: "uint256" },
+      { name: "stakeWithdrawn", type: "bool", internalType: "bool" },
+      { name: "snapshotId", type: "uint256", internalType: "uint256" },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "propose",
+    inputs: [
+      { name: "description", type: "string", internalType: "string" },
+      { name: "durationSeconds", type: "uint256", internalType: "uint256" },
+      { name: "snapshotId", type: "uint256", internalType: "uint256" },
+    ],
+    outputs: [{ name: "", type: "uint256", internalType: "uint256" }],
+    stateMutability: "payable",
+  },
+  {
+    type: "function",
+    name: "vote",
+    inputs: [
+      { name: "id", type: "uint256", internalType: "uint256" },
+      { name: "support", type: "bool", internalType: "bool" },
+    ],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "withdrawStake",
+    inputs: [{ name: "id", type: "uint256", internalType: "uint256" }],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "event",
+    name: "ProposalExecuted",
+    anonymous: false,
+    inputs: [
+      { indexed: true, name: "id", type: "uint256", internalType: "uint256" },
+      { indexed: false, name: "passed", type: "bool", internalType: "bool" },
+    ],
+  },
+  {
+    type: "event",
+    name: "Proposed",
+    anonymous: false,
+    inputs: [
+      { indexed: true, name: "id", type: "uint256", internalType: "uint256" },
+      { indexed: true, name: "proposer", type: "address", internalType: "address" },
+      { indexed: false, name: "start", type: "uint256", internalType: "uint256" },
+      { indexed: false, name: "end", type: "uint256", internalType: "uint256" },
+    ],
+  },
+  {
+    type: "event",
+    name: "StakeWithdrawn",
+    anonymous: false,
+    inputs: [
+      { indexed: true, name: "id", type: "uint256", internalType: "uint256" },
+      { indexed: true, name: "proposer", type: "address", internalType: "address" },
+      { indexed: false, name: "amount", type: "uint256", internalType: "uint256" },
+    ],
+  },
+  {
+    type: "event",
+    name: "Voted",
+    anonymous: false,
+    inputs: [
+      { indexed: true, name: "id", type: "uint256", internalType: "uint256" },
+      { indexed: true, name: "voter", type: "address", internalType: "address" },
+      { indexed: false, name: "support", type: "bool", internalType: "bool" },
+      { indexed: false, name: "weight", type: "uint256", internalType: "uint256" },
+    ],
+  },
+] as const;

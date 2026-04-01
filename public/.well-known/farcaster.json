@@ -1,0 +1,16 @@
+{
+  "accountAssociation": {
+    "header": "",
+    "payload": "",
+    "signature": ""
+  },
+  "miniapp": {
+    "version": "1",
+    "name": "BaseSimpleGovern",
+    "homeUrl": "https://example.vercel.app",
+    "iconUrl": "https://example.vercel.app/icon.svg",
+    "splashImageUrl": "https://example.vercel.app/icon.svg",
+    "splashBackgroundColor": "#F5F7FC",
+    "buttonTitle": "Open Governance"
+  }
+}

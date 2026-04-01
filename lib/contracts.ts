@@ -11,7 +11,7 @@ import {
 } from "viem";
 
 export const APP_NAME = "BaseSimpleGovern";
-export const BASE_APP_ID = (process.env.NEXT_PUBLIC_BASE_APP_ID ?? "69cc80706a64caf44d4853ef").trim();
+export const BASE_APP_ID = (process.env.NEXT_PUBLIC_BASE_APP_ID ?? "178").trim();
 const DEFAULT_CONTRACT_ADDRESS = "0x579718155947b37e872da069531047e92a8e99c1";
 const envContractAddress = normalizeAddress(
   (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ?? DEFAULT_CONTRACT_ADDRESS).trim(),
@@ -24,24 +24,21 @@ export const ENV_GOVERNANCE_TOKEN_ADDRESS = normalizeAddress(
 export const MIN_STAKE_ETH = "0.01";
 export const MIN_STAKE_WEI = parseEther(MIN_STAKE_ETH);
 
-// Replace the real Builder Code here when production attribution is issued.
 export const BUILDER_CODE =
-  (process.env.NEXT_PUBLIC_BASE_BUILDER_CODE ?? "BUILDER_CODE_PLACEHOLDER").trim();
+  (process.env.NEXT_PUBLIC_BASE_BUILDER_CODE ?? "bc_93sc1p48").trim();
 
-// Replace the real Encoded String here when you receive the final ERC-8021 suffix.
-export const ENCODED_STRING =
-  (process.env.NEXT_PUBLIC_BASE_BUILDER_SUFFIX ?? "ENCODED_STRING_PLACEHOLDER").trim();
+export const PROVIDED_BUILDER_SUFFIX =
+  (
+    process.env.NEXT_PUBLIC_BASE_BUILDER_SUFFIX ??
+    "0x62635f39337363317034380b0080218021802180218021802180218021"
+  ).trim() as Hex;
 
-const generatedFallbackSuffix = Attribution.toDataSuffix({
-  appCode: sanitizeBuilderCode(BUILDER_CODE),
-  metadata: {
-    builder_code_placeholder: BUILDER_CODE,
-  },
+export const GENERATED_BUILDER_SUFFIX = Attribution.toDataSuffix({
+  codes: [BUILDER_CODE],
 });
 
-export const DATA_SUFFIX: Hex = isHexString(ENCODED_STRING)
-  ? (ENCODED_STRING as Hex)
-  : generatedFallbackSuffix;
+export const DATA_SUFFIX: Hex = GENERATED_BUILDER_SUFFIX;
+export const DATA_SUFFIX_MATCHES_PROVIDED = PROVIDED_BUILDER_SUFFIX === GENERATED_BUILDER_SUFFIX;
 
 export type ProposalStatus = "active" | "ended" | "executed";
 
@@ -95,13 +92,4 @@ export function formatEther(value: bigint) {
 
 function normalizeAddress(value: string): Address {
   return isAddress(value) ? getAddress(value) : zeroAddress;
-}
-
-function sanitizeBuilderCode(value: string) {
-  const clean = value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "");
-  return clean || "basesimplegovern";
-}
-
-function isHexString(value: string) {
-  return /^0x[0-9a-fA-F]*$/.test(value);
 }

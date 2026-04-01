@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useAccount, usePublicClient, useWriteContract } from "wagmi";
+import { waitForCallsStatus } from "@wagmi/core";
+import { useAccount, useConfig, usePublicClient, useSendCalls } from "wagmi";
 import { parseEventLogs, type Hash } from "viem";
 
 import { baseSimpleGovernAbi } from "@/lib/abi/baseSimpleGovernAbi";
@@ -11,11 +12,13 @@ import { trackTransaction } from "@/utils/track";
 
 type PendingAction = "idle" | "propose" | "vote" | "conclude" | "withdraw";
 type TxResult = { txHash: Hash };
+type GovernWriteFunctionName = "propose" | "vote" | "conclude" | "withdrawStake";
 
 export function useTrackedGovern() {
   const { address } = useAccount();
+  const config = useConfig();
   const publicClient = usePublicClient();
-  const { writeContractAsync } = useWriteContract();
+  const { sendCallsAsync } = useSendCalls();
   const [pendingAction, setPendingAction] = useState<PendingAction>("idle");
 
   const execute = async (
@@ -23,10 +26,9 @@ export function useTrackedGovern() {
     parameters: {
       address: typeof CONTRACT_ADDRESS;
       abi: typeof baseSimpleGovernAbi;
-      functionName: string;
+      functionName: GovernWriteFunctionName;
       args?: readonly unknown[];
       value?: bigint;
-      dataSuffix?: `0x${string}`;
     },
     activity: {
       type: "Proposed" | "Voted" | "Concluded" | "Withdrawn";
@@ -38,7 +40,31 @@ export function useTrackedGovern() {
     setPendingAction(action);
 
     try {
-      const txHash = await writeContractAsync(parameters as never);
+      const { id } = await sendCallsAsync({
+        account: address,
+        calls: [
+          {
+            to: parameters.address,
+            abi: parameters.abi,
+            functionName: parameters.functionName,
+            args: parameters.args,
+            value: parameters.value,
+            dataSuffix: DATA_SUFFIX,
+          } as never,
+        ],
+        experimental_fallback: true,
+      });
+
+      const status = await waitForCallsStatus(config, {
+        id,
+        throwOnFailure: true,
+        timeout: 120_000,
+      });
+      const txHash = status.receipts?.[0]?.transactionHash as Hash | undefined;
+
+      if (!txHash) {
+        throw new Error("Transaction was sent, but no transaction hash was returned.");
+      }
 
       if (address) {
         addStoredActivity({
@@ -88,7 +114,6 @@ export function useTrackedGovern() {
           functionName: "propose",
           args: [description, durationSeconds, snapshotId],
           value: MIN_STAKE_WEI,
-          dataSuffix: DATA_SUFFIX,
         },
         {
           type: "Proposed",
@@ -104,7 +129,6 @@ export function useTrackedGovern() {
           abi: baseSimpleGovernAbi,
           functionName: "vote",
           args: [id, support],
-          dataSuffix: DATA_SUFFIX,
         },
         {
           type: "Voted",
@@ -127,7 +151,6 @@ export function useTrackedGovern() {
           abi: baseSimpleGovernAbi,
           functionName: "conclude",
           args: [id, totalSupplyEstimate],
-          dataSuffix: DATA_SUFFIX,
         },
         {
           type: "Concluded",
@@ -144,7 +167,6 @@ export function useTrackedGovern() {
           abi: baseSimpleGovernAbi,
           functionName: "withdrawStake",
           args: [id],
-          dataSuffix: DATA_SUFFIX,
         },
         {
           type: "Withdrawn",

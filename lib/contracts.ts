@@ -11,8 +11,11 @@ import {
 } from "viem";
 
 export const APP_NAME = "BaseSimpleGovern";
-export const BASE_APP_ID = "69cc80706a64caf44d4853ef";
-export const CONTRACT_ADDRESS = getAddress("0x579718155947b37e872da069531047e92a8e99c1");
+export const BASE_APP_ID = process.env.NEXT_PUBLIC_BASE_APP_ID ?? "69cc80706a64caf44d4853ef";
+const DEFAULT_CONTRACT_ADDRESS = "0x579718155947b37e872da069531047e92a8e99c1";
+const envContractAddress = normalizeAddress(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ?? DEFAULT_CONTRACT_ADDRESS);
+export const CONTRACT_ADDRESS =
+  envContractAddress === zeroAddress ? getAddress(DEFAULT_CONTRACT_ADDRESS) : envContractAddress;
 export const ENV_GOVERNANCE_TOKEN_ADDRESS = normalizeAddress(
   process.env.NEXT_PUBLIC_GOV_TOKEN_ADDRESS ?? "GOVERNANCE_TOKEN_ADDRESS_PLACEHOLDER",
 );

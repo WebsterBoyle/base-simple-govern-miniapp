@@ -15,3 +15,11 @@ Because this repository may evolve over time, use this README as a practical gui
 ## Features
 
 - Minimal project scope focused on simple governance.
+- Repository-first setup that can be cloned and run locally.
+- Suitable as a foundation for a small governance interface.
+- Clear structure for future improvements and documentation.
+- Easy to extend as project requirements become clearer.
+
+## Repository
+
+The source code is hosted here:

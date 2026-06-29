@@ -65,3 +65,11 @@ npm install
 Or, if the project uses another package manager, use the matching install command.
 
 ### 4. Run the project
+
+If scripts are defined in `package.json`, list them with:
+
+```bash
+npm run
+```
+
+Then run the appropriate development command, commonly:

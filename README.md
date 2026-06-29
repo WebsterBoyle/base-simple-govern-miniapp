@@ -99,3 +99,12 @@ Before making changes, review the existing code and confirm how data, routes, an
 - Keep changes small and easy to review.
 - Document new commands when they are added.
 - Update this README when setup or usage changes.
+- Prefer clear naming for governance actions and UI labels.
+- Avoid adding unnecessary complexity unless the project requires it.
+
+## Suggested Workflow
+
+1. Create a new branch for your changes.
+2. Make focused updates.
+3. Run available checks or tests.
+4. Review the diff before committing.

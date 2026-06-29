@@ -108,3 +108,10 @@ Before making changes, review the existing code and confirm how data, routes, an
 2. Make focused updates.
 3. Run available checks or tests.
 4. Review the diff before committing.
+5. Open a pull request or merge through your preferred workflow.
+
+## Testing
+
+If the project includes test scripts, run them before committing changes.
+
+Common examples include:

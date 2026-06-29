@@ -91,3 +91,11 @@ Typical areas to review or customize may include:
 - Styling and layout files.
 - Configuration values.
 - Deployment settings.
+
+Before making changes, review the existing code and confirm how data, routes, and UI elements are organized.
+
+## Development Notes
+
+- Keep changes small and easy to review.
+- Document new commands when they are added.
+- Update this README when setup or usage changes.

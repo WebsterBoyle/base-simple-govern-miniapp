@@ -150,3 +150,12 @@ When adding configuration:
 - Keep local setup steps simple.
 
 ## Contributing
+
+Contributions should keep the project focused, readable, and easy to maintain.
+
+When contributing:
+
+- Follow the existing code style.
+- Keep commits focused.
+- Include documentation updates when behavior changes.
+- Verify the project still runs after your changes.

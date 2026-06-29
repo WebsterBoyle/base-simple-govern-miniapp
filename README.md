@@ -141,3 +141,12 @@ Review the repository scripts to confirm the correct command.
 ## Configuration
 
 Configuration details depend on the files present in the repository.
+
+When adding configuration:
+
+- Keep environment-specific values out of committed source files.
+- Document required variables clearly.
+- Provide safe example values where useful.
+- Keep local setup steps simple.
+
+## Contributing

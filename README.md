@@ -115,3 +115,13 @@ Before making changes, review the existing code and confirm how data, routes, an
 If the project includes test scripts, run them before committing changes.
 
 Common examples include:
+
+```bash
+npm test
+```
+
+or:
+
+```bash
+npm run test
+```

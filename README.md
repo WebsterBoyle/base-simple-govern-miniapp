@@ -32,3 +32,11 @@ https://github.com/WebsterBoyle/base-simple-govern-miniapp.git
 
 ```bash
 git clone https://github.com/WebsterBoyle/base-simple-govern-miniapp.git
+cd base-simple-govern-miniapp
+```
+
+### 2. Review the project structure
+
+After cloning, inspect the files in the repository:
+
+```bash

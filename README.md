@@ -23,3 +23,12 @@ Because this repository may evolve over time, use this README as a practical gui
 ## Repository
 
 The source code is hosted here:
+
+https://github.com/WebsterBoyle/base-simple-govern-miniapp.git
+
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/WebsterBoyle/base-simple-govern-miniapp.git

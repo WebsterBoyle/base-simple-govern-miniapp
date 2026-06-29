@@ -81,3 +81,13 @@ npm run dev
 If the repository documents a different command, use that instead.
 
 ## Usage
+
+Use the miniapp as a base for simple governance interactions.
+
+Typical areas to review or customize may include:
+
+- The main application entry point.
+- Governance-related views or components.
+- Styling and layout files.
+- Configuration values.
+- Deployment settings.

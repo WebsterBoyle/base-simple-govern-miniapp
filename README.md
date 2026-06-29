@@ -133,3 +133,11 @@ If no tests are currently defined, consider adding tests for new behavior as the
 If the project includes a production build script, it may be available through:
 
 ```bash
+npm run build
+```
+
+Review the repository scripts to confirm the correct command.
+
+## Configuration
+
+Configuration details depend on the files present in the repository.

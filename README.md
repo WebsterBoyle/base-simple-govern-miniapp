@@ -73,3 +73,11 @@ npm run
 ```
 
 Then run the appropriate development command, commonly:
+
+```bash
+npm run dev
+```
+
+If the repository documents a different command, use that instead.
+
+## Usage

@@ -57,3 +57,11 @@ The exact setup commands depend on the files present in the repository.
 ### 3. Install dependencies
 
 If the project includes a `package.json`, install dependencies with the package manager used by the project:
+
+```bash
+npm install
+```
+
+Or, if the project uses another package manager, use the matching install command.
+
+### 4. Run the project

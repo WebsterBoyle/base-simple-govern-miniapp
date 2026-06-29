@@ -125,3 +125,11 @@ or:
 ```bash
 npm run test
 ```
+
+If no tests are currently defined, consider adding tests for new behavior as the project grows.
+
+## Build
+
+If the project includes a production build script, it may be available through:
+
+```bash

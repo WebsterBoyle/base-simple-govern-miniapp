@@ -159,3 +159,11 @@ When contributing:
 - Keep commits focused.
 - Include documentation updates when behavior changes.
 - Verify the project still runs after your changes.
+
+## Notes
+
+This README is intentionally practical and general so it can remain useful as the repository develops.
+
+For the latest source code, visit:
+
+https://github.com/WebsterBoyle/base-simple-govern-miniapp.git

@@ -40,3 +40,12 @@ cd base-simple-govern-miniapp
 After cloning, inspect the files in the repository:
 
 ```bash
+ls
+```
+
+Look for common project files such as:
+
+- `package.json`
+- `README.md`
+- `src/`
+- `app/`

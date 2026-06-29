@@ -49,3 +49,11 @@ Look for common project files such as:
 - `README.md`
 - `src/`
 - `app/`
+- `public/`
+- configuration files
+
+The exact setup commands depend on the files present in the repository.
+
+### 3. Install dependencies
+
+If the project includes a `package.json`, install dependencies with the package manager used by the project:
